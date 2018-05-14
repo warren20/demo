@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Banking application</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <style>
+            #info{
+                margin-left:40%;
+            }
+          input{
+              margin:20px;
+          }
+            #submit{
+                margin-left:40%;
+            }
+            #imptMsg{
+                text-align:center;
+                color:#A842BA;
+            }
+            p{
+                color:green;
+            }
+        #deposit{
+            display:none;
+            padding:10px 10px;
+            background-color:#E0A02A;
+        }
+        #withdraw{
+            display:none;
+            padding:10px 10px;
+            background-color:#FFF1C6;
+        }
+        #checkReport{
+            display:none;
+            padding:10px 10px;
+            background-color:#FFF1C6;
+        }
+        #newDisplay{
+            padding:20px;
+            background-color:#ccc;
+            display:none;
+        }
+        #depo{
+            margin-left:40%;
+        }
+        #withbtn{
+            margin-left:40%;
+        }
+        #wDisplay{
+            display:none;
+            background-color:beige;
+            padding:10px;
+        }
+        #balance{
+            display:none;
+            background-color:#E0A02A;
+        }
+        #bDisplay{
+            display:none;
+        }
+        #bsubmit,#rsubmit{
+            margin-left:40%;
+        }
+        #clearBalance{
+            margin-left:40%;
+        }
+        #firstView{
+            display:none;
+            background-color:#CCC;
+        }
+        #report{
+            background-color:#ccc;
+            min-height:200px;
+            text-align:center;
+            padding-top:5px;
+            display:none;
+        }
+        #close{
+            width:500px;
+            background-color:#F4D4B5;
+            min-height:200px;
+            text-align:center;
+            display:none;
+            padding-top:5px;
+            position:absolute;
+            top:100px;
+
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to Warren's Banking App!</h1>
+<div id="createAcc">
+  <div id="firstView">
+  <label id="info"><b>Open a new account</b></label>
+  &nbsp;
+  <br>
+  <form>
+  <label>Account Holder's Name</label>
+  <input id="accountOwner"   size="40"  placeholder="Name of account holder..." required>
+  <br/>
+  <!-- Account number must be generated automatically by the machine -->
+  <label>Account pin</label>
+  <input id="pinInput"   size="40"  placeholder="enter the pin..." required>
+  </form>
+  <br/>
+  <button id="submit" onclick="createAccount()"> Submit</button>
+  <button id="btnNew" onclick="showView()"> Done</button>
+</div>
+<!-- Notice -->
+<div id="result">
+    <h2 id="imptMsg"></h2>
+    <p id="msg"> </p>
+
+</div>
+<hr />
+<button id="newAcc" onclick="showView()">Open an Account</button>
+<button id="balBtn" onclick="showBalance()">check balance</button>
+<button onclick="depodisplayFunc()">deposit</button>
+<button onclick="withdrawFunc()">withdraw</button>
+<button onclick="showReport()">check history</button>
+<button onclick="closing()">close</button>
+<hr />
+<!-- Transaction container -->
+<div id="deposit">
+    <label id="info"><b>Fill deposit form</b></label>
+    <br>
+    <label>Enter your account number</label>
+    <input id="depoAcc"   size="40"  placeholder="Name of account holder..." required>
+    <br/>
+    <label>Enter your pin</label>
+    <input id="depoPin"   size="40"  placeholder="enter the pin..." required>
+    <br/>
+    <button id="submit" onclick="checkPin()"> Submit</button>
+
+  </div>
+<div id="newDisplay">
+<p id="depoMsg">Welcome in your account. Please Deposit your money.</p>
+<label>write amount to deposit</label>
+  <input id="dAmt"   size="40"  placeholder="Amount for deposit..." required>
+  <br/>
+  <button id="depo" onclick="deposit()"> Deposit</button> 
+  <button id="clear" onclick="done()">Done</button>
+</div>
+<!-- Withdraw money -->
+<div id="withdraw">
+    <label id="info"><b>Fill withdrawal form</b></label>
+    <br>
+    <label>Enter your account number</label>
+    <input id="wAcc"   size="40"  placeholder="Name of account holder..." required>
+    <br/>
+    <label>Enter your pin</label>
+    <input id="wPin"   size="40"  placeholder="enter the pin..." required>
+    <br/>
+    <button id="submit" onclick="withdrawVerifyPin()"> Send</button>
+    
+  </div>
+  <div id="wDisplay">
+    <p>You can now withdraw money from your account.</p>
+    <label>write amount to withdraw</label>
+      <input id="wAmt"   size="40"  placeholder="Amount to withdraw..." required>
+      <br/>
+      <button id="withbtn" onclick="withdrawMoney()"> send</button>
+      <button id="clearWithdraw" onclick="doneWithdraw()">Done</button>
+    </div>
+    <!-- Checking the balance   -->
+    <div id="balance">
+        <label id="info"><b>Checking balance form</b></label>
+        <br>
+        <label>Enter your account number</label>
+        <input id="bAcc"   size="40"  placeholder="Enter account number..." required>
+        <br/>
+        <label>Enter your pin</label>
+        <input id="bPin"   size="40"  placeholder="enter the pin..." required>
+        <br/>
+        <button id="bsubmit" onclick="bVerify()"> Send</button>
+      </div>
+      <div id="bDisplay">
+        <p>The balance on your account is shown below.</p>
+        <label>Balance amount:</label>
+          <input id="bAmt"   size="40"  placeholder="Amount remaining ..." required>
+          <br/>
+          <button id="clearBalance" onclick="doneBalance()">Done</button>
+        </div>
+        <div id="checkReport">
+                <label id="info"><b>Your account report</b></label>
+                <br>
+                <label>Enter your account number</label>
+                <input id="rAcc"   size="40"  placeholder="Enter account number..." required>
+                <br/>
+                <label>Enter your pin</label>
+                <input id="rPin"   size="40"  placeholder="enter the pin..." required>
+                <br/>
+                <button id="rsubmit" onclick="rVerify()"> Send</button>
+              </div>
+        <div id="report">
+            <h3>Please view your account report</h3>
+            
+            <p id="rpt"> </p>
+        
+            <button id="clrReport" onclick="clearReport()">done</button>
+        </div>
+        <div id="close">
+            <h2>
+            THANK YOU FOR USING OUR SERVICE!
+            </h2>
+        </div>
+</div> <!--end of container div -->
+
+
+      <script type="text/javascript" src="bankApp.js"></script>
+    </body>
+</html>

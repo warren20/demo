@@ -1,0 +1,19 @@
+
+#container{
+    width: 500px;
+    height:500px;
+    background-color:#ccc;
+    margin:0 auto;
+}
+#createAcc{
+    width: 500px;
+    height:800px;
+    background-color:#72BBE0;
+    margin:0 auto;
+    padding:40px;
+    
+}
+h1{
+    text-align:center;
+    color:#c9731E;
+}
